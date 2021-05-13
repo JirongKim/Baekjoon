@@ -2,7 +2,8 @@
 
 int main(void)
 {
-    int n;
+    int n,a;
+    a=0;
     scanf("%d",&n);
     
     int odd = 0;
