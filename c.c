@@ -1,10 +1,3 @@
-//
-//  c.c
-//  test
-//
-//  Created by 김지현 on 2021/05/14.
-//
-
 #include <stdio.h>
 
 int main(void)
