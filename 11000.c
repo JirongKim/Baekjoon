@@ -37,6 +37,7 @@ int main(void)
         }
         if(flag) continue;
         
+        
         for (int i = nowT; ; i++) {
             if(lecTime[i]>lecTime[now])
             {
@@ -46,6 +47,11 @@ int main(void)
         }
     }
     
+    printf("%d",cnt);
+    printf("%d",cnt);
+    printf("%d",cnt);
+    printf("%d",cnt);
+    printf("%d",cnt);
     printf("%d",cnt);
 }
 
