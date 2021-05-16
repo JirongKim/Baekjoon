@@ -5,6 +5,8 @@
 //  Created by 김지현 on 2021/05/17.
 //
 
+/*
+
 #include <stdio.h>
 
 int main(int argc, const char * argv[]) {
@@ -12,3 +14,4 @@ int main(int argc, const char * argv[]) {
     printf("Hello, World!\n");
     return 0;
 }
+*/
