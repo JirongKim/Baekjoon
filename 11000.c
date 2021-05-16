@@ -48,5 +48,8 @@ int main(void)
     }
     
     printf("%d",cnt);
+    printf("%d",cnt);
+    printf("%d",cnt);
+    printf("%d",cnt);
 }
 
