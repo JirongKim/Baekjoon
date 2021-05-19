@@ -1,52 +1,70 @@
 #include <stdio.h>
 
+struct LECTURE
+{
+    int s;
+    int t;
+} lecTime[200000];
+
+struct LECTURE temp[200000];
+
+void merge(int left, int mid, int right)
+{
+    int i = left;
+        int j = mid + 1;
+        int k = left;
+
+        while (i <= mid && j <= right) // i나, j가 index를 넘어갈 경우 while문에서 빠져나옴.
+        {
+            if (lecTime[i].s < lecTime[j].s) { temp[k++] = lecTime[i++]; } // i와 j를 비교해서, temp 배열에 작은순서대로 집어넣음.
+            else { temp[k++] = lecTime[j++]; }
+        }
+        while (i <= mid) { temp[k++] = lecTime[i++]; }
+        while (j <= right) { temp[k++] = lecTime[j++]; }
+        for (int a = left; a <= right; a++) { lecTime[a] = temp[a]; }
+        return;
+}
+
+void mergeSort(int left, int right)
+{
+    if(left < right)
+    {
+        int mid = (left + right) / 2;
+        mergeSort(left, mid);
+        mergeSort(mid + 1, right);
+        merge(left, mid, right);
+    }
+}
+
 int main(void)
 {
-    int n;
+    int n, cnt = 1;
     scanf("%d", &n);
+
     
-    int lecTime[200000];
     for (int i = 0; i < 200000; i++) {
-        lecTime[i] = 0;
+        lecTime[i].s = 0;
+        lecTime[i].t = 0;
     }
     
-    int max = 0;
-    int min = 10e9 + 1;
     for (int i = 0; i < n; i++) {
-        int s,t;
-        scanf("%d %d", &s, &t);
-        if(lecTime[s] == 0 || lecTime[s] < t)
-            lecTime[s] = t;
-        if(lecTime[s] > max) max = lecTime[s];
-        if(lecTime[s] < min) min = lecTime[s];
+        scanf("%d %d", &lecTime[i].s, &lecTime[i].t);
     }
     
-    int now = 1;
-    int cnt = 0;
-    while (1) {
-        int nowT = lecTime[now];
-        if(nowT == max){ cnt++; break; }
+    mergeSort(0, n - 1);
+    
+    int maxT = lecTime[0].t;
+    for (int i = 1; i < n; i++) {
+        if(lecTime[i].s >= maxT) {
+            cnt++;
+            maxT = lecTime[i].t;
+            continue;
+        }
+    }
+    
+    if(lecTime[n - 1].s < maxT && lecTime[n - 1].t > maxT)
+    {
         cnt++;
-        
-        int flag = 0;
-        for (int i = nowT; nowT > now; i--) {
-            if(lecTime[i] > lecTime[now])
-            {
-                now = i;
-                flag = 1;
-                break;
-            }
-        }
-        if(flag) continue;
-        
-        
-        for (int i = nowT; ; i++) {
-            if(lecTime[i] > lecTime[now])
-            {
-                now = i;
-                break;
-            }
-        }
     }
     
     printf("%d",cnt);
