@@ -1,3 +1,4 @@
+/*
 #include <stdio.h>
 
 struct LECTURE
@@ -70,3 +71,4 @@ int main(void)
     printf("%d",cnt);
 }
 
+*/
